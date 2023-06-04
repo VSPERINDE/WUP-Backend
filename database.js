@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const URI =
-  "mongodb+srv://sperindevitor:S0aQaASZHwiRjSNp@wup.vxysylq.mongodb.net/admin?authSource=admin&replicaSet=atlas-t30bo2-shard-0&w=majority&readPreference=primary&retryWrites=true&ssl=true";
+  "mongodb+srv://sperindevitor:S0aQaASZHwiRjSNp@wup.vxysylq.mongodb.net/?retryWrites=true&w=majority";
 
 //mongoose.set("useNewUrlParser", true);
 //mongoose.set("useFindAndModify", false);
