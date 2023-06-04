@@ -10,4 +10,4 @@ const URI =
 mongoose
   .connect(URI)
   .then(() => console.log("DB is Up!"))
-  .catch(() => console.log(err));
+  .catch((err) => console.log(err));
