@@ -1,13 +1,11 @@
 const mongoose = require("mongoose");
-const URI =
+const MONGODB_URI =
   "mongodb+srv://sperindevitor:S0aQaASZHwiRjSNp@wup.vxysylq.mongodb.net/?retryWrites=true&w=majority";
 
-//mongoose.set("useNewUrlParser", true);
-//mongoose.set("useFindAndModify", false);
-//mongoose.set("useCreateIndex", true);
-//mongoose.set("useUnifiedTopology", true);
-
 mongoose
-  .connect(URI)
+  .connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("DB is Up!"))
-  .catch(() => console.log(err));
+  .catch((err) => console.log(err));
