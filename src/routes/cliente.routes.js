@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const crypto = require("crypto");
-//const pagarme = require("../services/pagarme");
 const Cliente = require("../models/cliente");
 const WorkplaceCliente = require("../models/relationship/workplaceCliente");
 
@@ -21,47 +20,11 @@ router.post("/", async (req, res) => {
     });
     if (!existentCliente) {
       const _id = new mongoose.Types.ObjectId();
-      //criar conta bancária
-      /*    const { contaBancaria } = colaborador;
-        const pagarmeBankAccount = await pagarme("bank_accounts", {
-          agencia: contaBancaria.agencia,
-          bank_code: contaBancaria.banco,
-          conta: contaBancaria.numero,
-          conta_dv: contaBancaria.dv,
-          type: contaBancaria.tipo,
-          document_number: contaBancaria.cpfCnpj,
-          legal_name: contaBancaria.titular,
-        });
-        if (pagarmeBankAccount.error) {
-          throw pagarmeBankAccount;
-        }
-  
-        
-        //criar customer
-        const pagarmeCustomer = await pagarme("/customers", {
-          external_id: _id,
-          name: cliente.nome,
-          type: cliente.documento.tipo == "cpf" ? "individual" : "corporation",
-          country: cliente.endereco.pais,
-          email: cliente.email,
-          documents:[
-            {
-                type: cliente.documento.tipo,
-                number: cliente.documento.numero,
-            },
-          ],
-          phone_numbers: [cliente.telefone],
-          birthday: cliente.dataNascimento,
-        });
-        if (pagarmeCustomer.error) {
-          throw pagarmeCustomer;
-        }
-  */
+     
       //criando cliente
       newCliente = await Cliente({
         ...cliente,
         _id,
-        //customerId: pagarmeCustomer.id,
       }).save({ session });
     }
 
