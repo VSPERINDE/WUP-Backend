@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-//const pagarme = require("../services/pagarme");
 const Servico = require("../models/servico");
 const Colaborador = require("../models/colaborador");
 const Agendamento = require("../models/agendamento");
@@ -31,75 +30,7 @@ router.post("/", async (req, res) => {
       select: "_id",
     });
 
-    /*
-    //recuperar o cliente
-    const cliente = await Cliente.findById(clienteId).select(
-      "nome endereco customerId"
-    );
-
-    //recuperar o workplace
-    const workplace = await Workplace.findById(workplaceId).select(
-      "recipientId"
-    );
-
-    //recuperar o colaborador
-    const colaborador = await Colaborador.findById(colaboradorId).select(
-      "recipientId"
-    );
-
-    //criando pagamento
-    const precoFinal = util.toCents(servico.preco) * 100;
-
     
-    const colaboradorSplitRule = {
-      recipient_id: colaborador.receipientId,
-      amount: parseInt(precoFinal * (servico.comissao / 100)),
-    };
-
-    const createPayment = await pagarme("/transactions", {
-      amount: precoFinal,
-      //dados cartão
-      card_number: "4556366941062122",
-      card_cvv: "111",
-      card_holder_name: "Aardvark da Silva",
-      card_expiration_date: "1220",
-      //dados do cliente
-      customer: {
-        id: cliente.customerId,
-      },
-      billing: {
-        name: cliente.nome,
-        address: {
-          zipcode: cliente.endereco.cep,
-          street: cliente.endereco.logradouro,
-          street_number: cliente.endereco.numero,
-          state: cliente.endereco.uf,
-          country: cliente.endereco.pais,
-          city: cliente.endereco.cidade,
-        },
-      },
-      items: [
-        {
-          id: servicoId,
-          title: servico.nome,
-          unit_price: precoFinal,
-          quantity: 1,
-          tangible: false,
-        },
-      ],
-      split_rules: [
-        {
-          recipient_id: workplace.recipientId,
-          amount: precoFinal - keys.app_fee - colaboradorSplitRule.amount,
-        },
-        colaboradorSplitRule,
-      ],
-    });
-
-    if (createPayment.error) {
-      throw createPayment;
-    }
-*/
 
     const checkAgendamento = await Agendamento.find({
       clienteId: clienteId,
