@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const Colaborador = require("../models/colaborador");
 const mongoose = require("mongoose");
-//const pagarme = require("../services/pagarme");
 const WorkplaceColaborador = require("../models/relationship/workplaceColaborador");
 const ColaboradorServico = require("../models/relationship/colaboradorServico");
 
@@ -20,35 +19,10 @@ router.post("/", async (req, res) => {
       $or: [{ email: colaborador.email }, { telefone: colaborador.telefone }],
     });
     if (!existentColaborador) {
-      //criar conta bancária
-      /*    const { contaBancaria } = colaborador;
-      const pagarmeBankAccount = await pagarme("bank_accounts", {
-        agencia: contaBancaria.agencia,
-        bank_code: contaBancaria.banco,
-        conta: contaBancaria.numero,
-        conta_dv: contaBancaria.dv,
-        type: contaBancaria.tipo,
-        document_number: contaBancaria.cpfCnpj,
-        legal_name: contaBancaria.titular,
-      });
-      if (pagarmeBankAccount.error) {
-        throw pagarmeBankAccount;
-      }
-
-      //criar recebedor
-      const pagarmeRecipient = await pagarme("/recipients", {
-        transfer_interval: "daily",
-        transfer_enabled: "true",
-        bank_account_id: pagarmeBankAccount.data.id,
-      });
-      if (pagarmeRecipient.error) {
-        throw pagarmeRecipient;
-      }
-*/
+     
       //criando colaborador
       newColaborador = await Colaborador({
         ...colaborador,
-        //recipientId: pagarmeRecipient.id,
       }).save({ session });
     }
 
